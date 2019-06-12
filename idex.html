@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gradient Background</title>
+	<style>
+		body {
+		font: 'Raleway', sans-serif;
+	    color: rgba(0,0,0,.5);
+	    text-align: center;
+	    text-transform: uppercase;
+	    letter-spacing: .5em;
+	    top: 15%;
+		background: linear-gradient(to right, red , yellow); /* Standard syntax */
+		}
+
+		h1 {
+		    font: 600 3.5em 'Raleway', sans-serif;
+		    color: rgba(0,0,0,.5);
+		    text-align: center;
+		    text-transform: uppercase;
+		    letter-spacing: .5em;
+		    width: 100%;
+		}
+
+		h3 {
+			font: 900 1em 'Raleway', sans-serif;
+		    color: rgba(0,0,0,.5);
+		    text-align: center;
+		    text-transform: none;
+		    letter-spacing: 0.01em;
+
+		}
+		button{
+		    margin: 5px;
+		    background-color: rgb(193,193,193);
+		}
+	</style>
+
+	
+
+</head>
+<body id="gradient">
+	<h1>Background Generator</h1>
+	<input class="color1" type="color" name="color1" value="#00ff00">
+	<input class="color2" type="color" name="color2" value="#ff0000"><br>
+	<button id="random">Feeling Lucky?</button>
+	<h2>Current CSS Background</h2>
+	<h3></h3>
+	<script>
+		var css = document.querySelector("h3");
+		var color1 = document.querySelector(".color1");
+		var color2 = document.querySelector(".color2");
+		var body = document.getElementById("gradient");
+		var random = document.getElementsByTagName("button")[0];
+
+		console.log(css);
+		console.log(color1);
+		console.log(color2);
+
+		function print(){
+			css.textContent = getBackground();
+		}
+
+		function getBackground(){
+			return "linear-gradient(to right, "
+			+color1.value + "," + color2.value+ ")";
+		}
+
+		function setGradient(){
+			body.style.background=getBackground();
+			print();
+		}
+
+		function generateRandom(){
+			var letters = '0123456789ABCDEF';
+			var color1a = '#';
+			var color2a= "#";
+			 for (var i = 0; i < 6; i++) {
+			   color1a += letters[Math.floor(Math.random() * 16)];
+			 }
+			 for (var j = 0; j < 6; j++) {
+			   color2a += letters[Math.floor(Math.random() * 16)];
+			 }
+			 color1.value = color1a.toString();
+			 color2.value = color2a.toString();
+			 setGradient();
+			 
+			 
+
+		}
+
+		print();
+
+		color2.addEventListener("input", setGradient);
+
+		color1.addEventListener("input", setGradient);
+
+		random.addEventListener("click", generateRandom);
+	</script>
+</body>
+</html>
