@@ -1,3 +1,3 @@
 # Background-Generator
 
-<img src="sample.png" height = "500px"></img>
+<img src="sample.png"></img>
